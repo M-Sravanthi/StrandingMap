@@ -100,7 +100,7 @@ googleSat.addTo(map);
                       GEOJSON               
 ===================================================*/
 
-var linedata = L.geoJSON(data,{
+var data = L.geoJSON(data,{
     onEachFeature: function(feature,layer){
         layer.bindPopup('<b>This is </b>' + feature.properties.Species)
     },
@@ -118,13 +118,19 @@ var linedata = L.geoJSON(data,{
 var baseLayers = {
     "Satellite":googleSat,
     "Google Map":googleStreets,
-    "OpenStreetMap": osm,
+    "OpenStreetMap": osm
 };
 
 var overlays = {
-    "Marker": singleMarker,
-    "PointData":data,
+    //"Marker": singleMarker,
+    "PointData":data
 };
 
 L.control.layers(baseLayers, overlays).addTo(map);
+
+/*===================================================
+                      SEARCH BUTTON               
+===================================================*/
+
+L.Control.geocoder().addTo(map);
 </script>
